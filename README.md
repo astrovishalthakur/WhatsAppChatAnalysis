@@ -12,4 +12,4 @@
 ### 4. Click More
 ### 5. Click export Chat.
 ### 6. There may be 5-6 files, you just need to download whatsapp chat.txt file.
-### 7. Now after downloading, you can just upload it to wesite link proviede above.
+### 7. Now after downloading, you can just upload it to wesite link provided above.
