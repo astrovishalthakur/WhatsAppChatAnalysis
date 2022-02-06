@@ -12,7 +12,7 @@ if "load_state" not in st.session_state:
 
 st.sidebar.title("Whatsapp Chat Analyzer")
 uploaded_file = st.sidebar.file_uploader("Choose a file")
-time.sleep(1)
+time.sleep(5)
 if uploaded_file is not None or st.session_state.load_state:
     # To read file as bytes:
     bytes_data = uploaded_file.getvalue()
