@@ -141,17 +141,22 @@ if uploaded_file is not None or st.session_state.load_state:
 
         # emoji analysis
 
-        st.title("Most Common Emojis")
-        emoji_df = helper.emoji_helper(selected_user, df)
+        try:
 
-        col1, col2 = st.columns(2)
+            st.title("Most Common Emojis")
+            emoji_df = helper.emoji_helper(selected_user, df)
 
-        with col1:
-            st.dataframe(emoji_df)
-        with col2:
-            fig, ax = plt.subplots()
-            ax.pie(emoji_df["Number"].head(), labels=emoji_df["emoji"].head(), autopct="%0.2f")
-            st.pyplot(fig)
+            col1, col2 = st.columns(2)
+
+            with col1:
+                st.dataframe(emoji_df)
+            with col2:
+                fig, ax = plt.subplots()
+                ax.pie(emoji_df["Number"].head(), labels=emoji_df["emoji"].head(), autopct="%0.2f")
+                st.pyplot(fig)
+
+        except KeyError:
+            pass
 
 
 
