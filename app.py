@@ -64,19 +64,24 @@ if uploaded_file is not None or st.session_state.load_state:
 
         # Daily Timeline
 
-        st.title("Daily Timeline")
-        a = timeline.time.unique()
-        options = st.multiselect("Choose Months", a, a[-2])
+        try:
 
-        fig, ax = plt.subplots()
-        for i in options:
-            timeL = helper.daily_df(selected_user, df, i)
-            ax.plot(timeL.day, timeL.message, label=f"{i}")
-        plt.legend(loc="best")
-        plt.xlim((1, 31))
-        plt.xlabel("Date")
-        plt.ylabel("Messages")
-        st.pyplot(fig, clear_figure=True)
+            st.title("Daily Timeline")
+            a = timeline.time.unique()
+            options = st.multiselect("Choose Months", a, a[-2])
+
+            fig, ax = plt.subplots()
+            for i in options:
+                timeL = helper.daily_df(selected_user, df, i)
+                ax.plot(timeL.day, timeL.message, label=f"{i}")
+            plt.legend(loc="best")
+            plt.xlim((1, 31))
+            plt.xlabel("Date")
+            plt.ylabel("Messages")
+            st.pyplot(fig, clear_figure=True)
+
+        except IndexError:
+            pass
 
         # finding the busiest users in the group(Group level)
         if selected_user == "Overall":
@@ -125,20 +130,26 @@ if uploaded_file is not None or st.session_state.load_state:
         st.pyplot(fig)
 
         # WordCloud
-        st.title("WordCloud")
-        df_wc = helper.create_wordcloud(selected_user, df)
-        fig, ax = plt.subplots()
-        ax.imshow(df_wc)
-        st.pyplot(fig)
+        try:
+            st.title("WordCloud")
+            df_wc = helper.create_wordcloud(selected_user, df)
+            fig, ax = plt.subplots()
+            ax.imshow(df_wc)
+            st.pyplot(fig)
+        except Exception as e:
+            pass
 
         # most common words
-        st.title("Most Common Words")
-        most_common_df = helper.most_common_words(selected_user, df)
-        fig, ax = plt.subplots()
-        ax.barh(most_common_df[0][::-1], most_common_df[1][::-1])
-        plt.xticks(rotation="vertical")
-        st.pyplot(fig)
+        try:
+            st.title("Most Common Words")
+            most_common_df = helper.most_common_words(selected_user, df)
+            fig, ax = plt.subplots()
+            ax.barh(most_common_df[0][::-1], most_common_df[1][::-1])
+            plt.xticks(rotation="vertical")
+            st.pyplot(fig)
 
+        except Exception as e:
+            pass
         # emoji analysis
 
         try:
