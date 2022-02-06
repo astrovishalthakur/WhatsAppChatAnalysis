@@ -3,6 +3,7 @@ import helper
 import preprocessor
 import matplotlib.pyplot as plt
 import seaborn as sns
+import time
 
 # Initialize session state
 
@@ -11,6 +12,7 @@ if "load_state" not in st.session_state:
 
 st.sidebar.title("Whatsapp Chat Analyzer")
 uploaded_file = st.sidebar.file_uploader("Choose a file")
+time.sleep(1)
 if uploaded_file is not None or st.session_state.load_state:
     # To read file as bytes:
     bytes_data = uploaded_file.getvalue()
